@@ -22,6 +22,7 @@
 #include "glslang/SPIRV/SPVRemapper.h"
 #include <filesystem>
 #include <cmath>
+#include <cstdarg>
 
 // Command-line options
 enum TOptions {
@@ -46,6 +47,22 @@ struct SwapchainBuffers {
     VkCommandBuffer cmd;
     VkImageView view;
 };
+
+std::string format(const char *message, ...) {
+    std::size_t const STRING_BUFFER(4096);
+
+    assert(message != nullptr);
+    assert(strlen(message) < STRING_BUFFER);
+
+    char buffer[STRING_BUFFER];
+    va_list list;
+
+    va_start(list, message);
+    vsnprintf(buffer, STRING_BUFFER, message, list);
+    va_end(list);
+
+    return buffer;
+}
 
 #ifndef _WIN32
 

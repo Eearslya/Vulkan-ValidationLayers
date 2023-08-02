@@ -345,7 +345,7 @@ VKAPI_ATTR VkResult VKAPI_CALL CreateInstance(const VkInstanceCreateInfo *pCreat
     CHECK_ENABLED local_enables {};
     CHECK_DISABLED local_disables {};
     bool lock_setting;
-    ConfigAndEnvSettings config_and_env_settings_data {OBJECT_LAYER_DESCRIPTION, pCreateInfo->pNext, local_enables, local_disables,
+    ConfigAndEnvSettings config_and_env_settings_data {OBJECT_LAYER_DESCRIPTION, pCreateInfo, local_enables, local_disables,
         report_data->filter_message_ids, &report_data->duplicate_message_limit, &lock_setting};
     ProcessConfigAndEnvSettings(&config_and_env_settings_data);
     layer_debug_messenger_actions(report_data, OBJECT_LAYER_DESCRIPTION);
