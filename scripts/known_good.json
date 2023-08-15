@@ -115,6 +115,7 @@
     "install_names": {
         "glslang": "GLSLANG_INSTALL_DIR",
         "Vulkan-Headers": "VULKAN_HEADERS_INSTALL_DIR",
+        "Vulkan-Utility-Libraries": "VULKAN_UTILITY_LIBRARIES_INSTALL_DIR",
         "SPIRV-Headers": "SPIRV_HEADERS_INSTALL_DIR",
         "SPIRV-Tools": "SPIRV_TOOLS_INSTALL_DIR",
         "SPIRV-Reflect": "SPIRV_REFLECT_INSTALL_DIR",

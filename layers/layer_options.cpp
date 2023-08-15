@@ -330,20 +330,6 @@ uint32_t SetMessageDuplicateLimit(const std::string &config_message_limit, const
     return limit;
 }
 
-const VkLayerSettingsCreateInfoEXT *FindSettingsInChain(const void *next) {
-    const VkBaseOutStructure *current = reinterpret_cast<const VkBaseOutStructure *>(next);
-    const VkLayerSettingsCreateInfoEXT *found = nullptr;
-    while (current) {
-        if (VK_STRUCTURE_TYPE_LAYER_SETTINGS_EXT == current->sType) {
-            found = reinterpret_cast<const VkLayerSettingsCreateInfoEXT *>(current);
-            current = nullptr;
-        } else {
-            current = current->pNext;
-        }
-    }
-    return found;
-}
-
 static bool SetBool(const std::string &config_string, const std::string &env_string, bool default_val) {
     bool result = default_val;
 

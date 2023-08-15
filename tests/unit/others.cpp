@@ -180,7 +180,7 @@ TEST_F(VkLayerTest, CustomStypeStructString) {
 
     // Communicate list of structinfo pairs to layers
     const char *id[] = {"3000300000", "24"};
-    VkLayerSettingEXT setting = {OBJECT_LAYER_NAME, "custom_stype_list", VK_LAYER_SETTING_TYPE_STRING_EXT, static_cast<uint32_t>(std::size(id)), {&id}};
+    VkLayerSettingEXT setting = {OBJECT_LAYER_NAME, "custom_stype_list", VK_LAYER_SETTING_TYPE_STRING_EXT, static_cast<uint32_t>(std::size(id)), &id};
     VkLayerSettingsCreateInfoEXT layer_setting_create_info = {VK_STRUCTURE_TYPE_LAYER_SETTINGS_CREATE_INFO_EXT, nullptr, 1, &setting};
 
     ASSERT_NO_FATAL_FAILURE(InitFramework(m_errorMonitor, &layer_setting_create_info));
@@ -234,7 +234,7 @@ TEST_F(VkLayerTest, CustomStypeStructStringArray) {
         string_stype_a.c_str(), sizeof_struct.c_str(),
     };
     VkLayerSettingEXT setting = {
-        OBJECT_LAYER_NAME, "custom_stype_list", VK_LAYER_SETTING_TYPE_STRING_EXT, static_cast<uint32_t>(std::size(ids)), {&ids}};
+        OBJECT_LAYER_NAME, "custom_stype_list", VK_LAYER_SETTING_TYPE_STRING_EXT, static_cast<uint32_t>(std::size(ids)), &ids};
     VkLayerSettingsCreateInfoEXT layer_setting_create_info = {VK_STRUCTURE_TYPE_LAYER_SETTINGS_CREATE_INFO_EXT, nullptr, 1, &setting};
 
     ASSERT_NO_FATAL_FAILURE(InitFramework(m_errorMonitor, &layer_setting_create_info));
@@ -285,7 +285,7 @@ TEST_F(VkLayerTest, CustomStypeStructIntegerArray) {
     };
 
     VkLayerSettingEXT setting = {
-        OBJECT_LAYER_NAME, "custom_stype_list", VK_LAYER_SETTING_TYPE_UINT32_EXT, static_cast<uint32_t>(std::size(ids)), {&ids[0]}};
+        OBJECT_LAYER_NAME, "custom_stype_list", VK_LAYER_SETTING_TYPE_UINT32_EXT, static_cast<uint32_t>(std::size(ids)), &ids[0]};
     VkLayerSettingsCreateInfoEXT layer_setting_create_info = {VK_STRUCTURE_TYPE_LAYER_SETTINGS_CREATE_INFO_EXT, nullptr, 1, &setting};
 
     ASSERT_NO_FATAL_FAILURE(InitFramework(m_errorMonitor, &layer_setting_create_info));
@@ -311,7 +311,7 @@ TEST_F(VkLayerTest, DuplicateMessageLimit) {
     AddRequiredExtensions(VK_KHR_GET_PHYSICAL_DEVICE_PROPERTIES_2_EXTENSION_NAME);
 
     uint32_t value = 3;
-    const VkLayerSettingEXT setting = {OBJECT_LAYER_NAME, "duplicate_message_limit", VK_LAYER_SETTING_TYPE_UINT32_EXT, 1, {&value}};
+    const VkLayerSettingEXT setting = {OBJECT_LAYER_NAME, "duplicate_message_limit", VK_LAYER_SETTING_TYPE_UINT32_EXT, 1, &value};
     VkLayerSettingsCreateInfoEXT create_info = {VK_STRUCTURE_TYPE_LAYER_SETTINGS_CREATE_INFO_EXT, nullptr, 1, &setting};
 
     ASSERT_NO_FATAL_FAILURE(InitFramework(m_errorMonitor, &create_info));
@@ -376,7 +376,7 @@ TEST_F(VkLayerTest, VuidIdFilterString) {
     // the error_monitor's SetUnexpectedError to test the filtering.
 
     const char *ids[] = {"VUID-VkRenderPassCreateInfo-pNext-01963"};
-    const VkLayerSettingEXT setting = {OBJECT_LAYER_NAME, "message_id_filter", VK_LAYER_SETTING_TYPE_STRING_EXT, 1, {ids}};
+    const VkLayerSettingEXT setting = {OBJECT_LAYER_NAME, "message_id_filter", VK_LAYER_SETTING_TYPE_STRING_EXT, 1, ids};
     VkLayerSettingsCreateInfoEXT layer_settings_create_info = {VK_STRUCTURE_TYPE_LAYER_SETTINGS_CREATE_INFO_EXT, nullptr, 1, &setting};
 
     ASSERT_NO_FATAL_FAILURE(InitFramework(m_errorMonitor, &layer_settings_create_info));
@@ -412,8 +412,8 @@ TEST_F(VkLayerTest, VuidFilterHexInt) {
     // the error_monitor's SetUnexpectedError to test the filtering.
 
     const char *ids[] = {"0xa19880e3"};
-    const VkLayerSettingEXT setting = {OBJECT_LAYER_NAME, "message_id_filter", VK_LAYER_SETTING_TYPE_STRING_EXT, 1, {ids}};
-    VkLayerSettingsCreateInfoEXT layer_settings_create_info = {VK_STRUCTURE_TYPE_LAYER_SETTINGS_EXT, nullptr, 1, &setting};
+    const VkLayerSettingEXT setting = {OBJECT_LAYER_NAME, "message_id_filter", VK_LAYER_SETTING_TYPE_STRING_EXT, 1, ids};
+    VkLayerSettingsCreateInfoEXT layer_settings_create_info = {VK_STRUCTURE_TYPE_LAYER_SETTINGS_CREATE_INFO_EXT, nullptr, 1, &setting};
 
     ASSERT_NO_FATAL_FAILURE(InitFramework(m_errorMonitor, &layer_settings_create_info));
     if (!AreRequiredExtensionsEnabled()) {
@@ -448,7 +448,7 @@ TEST_F(VkLayerTest, VuidFilterInt) {
     // the error_monitor's SetUnexpectedError to test the filtering.
 
     const char *ids[] = {"2711126243"};
-    const VkLayerSettingEXT setting = {OBJECT_LAYER_NAME, "message_id_filter", VK_LAYER_SETTING_TYPE_STRING_EXT, 1, {ids}};
+    const VkLayerSettingEXT setting = {OBJECT_LAYER_NAME, "message_id_filter", VK_LAYER_SETTING_TYPE_STRING_EXT, 1, ids};
     VkLayerSettingsCreateInfoEXT layer_settings_create_info = {VK_STRUCTURE_TYPE_LAYER_SETTINGS_CREATE_INFO_EXT, nullptr, 1, &setting};
 
     ASSERT_NO_FATAL_FAILURE(InitFramework(m_errorMonitor, &layer_settings_create_info));
